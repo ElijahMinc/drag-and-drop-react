@@ -63,15 +63,6 @@ export const ComplexDragAndDrop = () => {
      }
    ])
 
-   useEffect(() => {
-
-      console.log('mount')
-      return () => {
-         console.log('unmount')
-      }
-   }, [])
-
-
 
    const dragStartHandler = (e, board, item) => {
       setCurrentBoard(board)
@@ -100,9 +91,6 @@ export const ComplexDragAndDrop = () => {
          e.target.style.boxShadow = '0 2px 3px gray'
          
       }
-
-
-
       
    }
 
@@ -154,22 +142,22 @@ export const ComplexDragAndDrop = () => {
 
    return  (
       <>
-      {boards.map(board => (
-         <div 
-            className={style.board}
-            onDragOver={e => dragOverHandler(e)}
-            onDrop={(e) => dropCardHandler(e, board)}
-         >
-            <div className={style.board__title}>
-               {board.title}
-            </div>
-            {board.items.map(item => (
-               <div  onDragStart={(e) => dragStartHandler(e, board, item)} onDragLeave={dragLeaveHandler} onDragEnd={dragEndHandler} onDragOver={dragOverHandler} onDrop={(e) => dropHandler(e, board, item)} draggable className={style.item}>
-                  {item.title}
+         {boards.map(board => (
+            <div 
+               className={style.board}
+               onDragOver={e => dragOverHandler(e)}
+               onDrop={(e) => dropCardHandler(e, board)}
+            >
+               <div className={style.board__title}>
+                  {board.title}
                </div>
-            ))}
-         </div>
-      ))}
+               {board.items.map(item => (
+                  <div  onDragStart={(e) => dragStartHandler(e, board, item)} onDragLeave={dragLeaveHandler} onDragEnd={dragEndHandler} onDragOver={dragOverHandler} onDrop={(e) => dropHandler(e, board, item)} draggable className={style.item}>
+                     {item.title}
+                  </div>
+               ))}
+            </div>
+         ))}
          
 
       </>
